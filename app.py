@@ -18,6 +18,11 @@ class Hello(Resource):
         data = request.get_json()   
         return jsonify({'data': data})
   
+class States(Resource):
+  
+    def get(self):
+        rows=db.query_states()
+        return jsonify({'number of states':len(rows)})
 class Counties(Resource):
   
     def get(self):
@@ -34,6 +39,7 @@ class Counties(Resource):
 
 api.add_resource(Hello, '/')
 api.add_resource(Counties, '/Counties')
+api.add_resource(States, '/States')
 
 
 if __name__ == '__main__':
